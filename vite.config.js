@@ -12,20 +12,21 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         sourcemap: false,
         runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-cache',
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 ano
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+        {
+          urlPattern: /^http:\/\/localhost:8001\/.*/i,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api-cache',
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 60 * 60 * 24, // 24 horas
+            },
+            networkTimeoutSeconds: 10,
+            cacheableResponse: {
+              statuses: [0, 200],
             },
           },
+        },
           {
             urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
             handler: 'CacheFirst',
