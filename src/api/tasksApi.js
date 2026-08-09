@@ -5,8 +5,14 @@ const tasksApi = {
     return apiClient.get('/tasks');
   },
 
-  create(title) {
-    return apiClient.post('/tasks', { title });
+  create(payload) {
+    const data = {
+      title: payload.title,
+    };
+    if (payload.imgAttachmentKey) {
+      data.img_attachment_key = payload.imgAttachmentKey;
+    }
+    return apiClient.post('/tasks', data);
   },
 
   update(id, data) {
