@@ -32,6 +32,8 @@
       <button type="submit" :disabled="loading">
         {{ loading ? 'Entrando...' : 'Entrar' }}
       </button>
+
+      <router-link to="/register">Ainda não tenho uma conta</router-link>
     </form>
   </div>
 </template>
